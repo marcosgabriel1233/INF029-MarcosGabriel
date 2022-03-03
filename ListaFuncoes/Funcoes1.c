@@ -4,7 +4,7 @@ int main(void)
     float soma(void);
 
     float resultado = soma();
-    printf("A soma eh: %f", resultado);
+    printf("A soma eh: %.2f", resultado);
 
     return 0;
 }
