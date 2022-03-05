@@ -9,7 +9,7 @@ int main(void)
 
     float resultado =  subtrai (a, b, c);
 
-    printf("O resultado eh: %f", resultado);
+    printf("O resultado eh: %.1f", resultado);
 
     return 0;
 }
