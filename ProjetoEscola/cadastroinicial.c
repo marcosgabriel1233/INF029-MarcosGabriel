@@ -17,10 +17,10 @@ struct alunos
     int matriculaAluno;
 };
 
-/*struct professor
+struct professor
 {
     char nomeProf[31];
-    char sexoProf[2];
+    char sexoProf;
     int nascProf;
     int cpfProf;
     int matriculaProf;
@@ -32,7 +32,7 @@ struct materia
     char profMat[31];
     int codigoMat;
     int semestreMat;
-};*/
+};
 
 int main(void)
 {
@@ -46,39 +46,43 @@ int main(void)
         printf("digite a opcao:\n");
         printf("0 - sair\n");
         printf("1 - inserir aluno\n");
+        printf("2 - mostrar algo\n");
         scanf("%d", &opcao);
 
         switch (opcao)
         {
-        case 0:
-        {
-            printf("SAINDO...\n");
-            sair = 1;
-            break;
-        }
+            case 0:
+            {
+                printf("SAINDO...\n");
+                sair = 1;
+                break;
+            }
 
-        case 1:
-        {
-            //printf("Digite a matricula do aluno: ");
-            //scanf("%d", &cadastro.matriculaAluno);
-            printf("Digite o nome do aluno: ");
-            fgets(cadastro.nome, 50, stdin);
+            case 1:
+            {
+                printf("Digite a matricula do aluno: ");
+                scanf("%d", &cadastro.matriculaAluno);
+                printf("Digite o nome do aluno: ");
+                fgets(cadastro.nome, 50, stdin);
 
-            /*o fgets é uma das funções mais indicadas para ler string do teclado.
-            Ela controla o tamanho do buffer, e não deixa o buffer com lixo.
-            Entretanto ela guarda o \n ao final da string, por isso é preciso removê-lo, como feito a seguir*/
-            size_t ln = strlen(cadastro.nome) - 1; // size_t = unsigned integer type
-            if (cadastro.nome[ln] == '\n')
-                cadastro.nome[ln] = '\0';
+                size_t ln = strlen(cadastro.nome) - 1; 
+                if (cadastro.nome[ln] == '\n')
+                    cadastro.nome[ln] = '\0';
 
-            /*printf("Digite o sexo do aluno: ");
-            fgets(cadastro.sexoAluno, 2, stdin);
-            printf("Digite a data de nascimento (dd/mm/aa): ");
-            scanf("%d/%d/%d", &cadDat.dia, &cadDat.mes, &cadDat.ano);
-            printf("Digite o CPF: ");
-            scanf("%d", &cadastro.cpfAluno);*/
-            break;
-        }
+                printf("Digite o sexo do aluno: ");
+                scanf("%c", &cadastro.sexoAluno);
+                printf("Digite a data de nascimento (dd/mm/aa): ");
+                scanf("%d/%d/%d", &cadDat.dia, &cadDat.mes, &cadDat.ano);
+                printf("Digite o CPF: ");
+                scanf("%d", &cadastro.cpfAluno);
+                break;
+            }
+
+            case 2:
+            {
+                printf("Sexo: %c\n", cadastro.matriculaAluno);
+                break;
+            }
         }
     }
 }
