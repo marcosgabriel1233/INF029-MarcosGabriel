@@ -67,7 +67,7 @@ int main(void)
                     cadastro.nome[ln] = '\0';
 
                 printf("Digite o sexo do aluno: ");
-                scanf("%c", &cadastro.sexoAluno);
+                fgets(cadastro.sexoAluno, 2, stdin);
                 printf("Digite a data de nascimento (dd/mm/aa): ");
                 scanf("%d/%d/%d", &cadDat.dia, &cadDat.mes, &cadDat.ano);
                 printf("Digite o CPF: ");
