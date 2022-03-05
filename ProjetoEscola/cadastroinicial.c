@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 
 struct data
@@ -46,7 +45,6 @@ int main(void)
         printf("digite a opcao:\n");
         printf("0 - sair\n");
         printf("1 - inserir aluno\n");
-        printf("2 - mostrar algo\n");
         scanf("%d", &opcao);
 
         switch (opcao)
@@ -64,7 +62,6 @@ int main(void)
                 scanf("%d", &cadastro.matriculaAluno);
                 printf("Digite o nome do aluno: ");
                 fgets(cadastro.nome, 50, stdin);
-
                 size_t ln = strlen(cadastro.nome) - 1; 
                 if (cadastro.nome[ln] == '\n')
                     cadastro.nome[ln] = '\0';
@@ -75,12 +72,6 @@ int main(void)
                 scanf("%d/%d/%d", &cadDat.dia, &cadDat.mes, &cadDat.ano);
                 printf("Digite o CPF: ");
                 scanf("%d", &cadastro.cpfAluno);
-                break;
-            }
-
-            case 2:
-            {
-                printf("Sexo: %c\n", cadastro.matriculaAluno);
                 break;
             }
         }
