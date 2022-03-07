@@ -1,50 +1,54 @@
 #include <stdio.h>
 #include <string.h>
 
-struct data
+typedef struct data
 {
     int dia;
     int mes;
     int ano;
-};
+} datanasc;
 
-struct alunos
+typedef struct alunos
 {
-    char nome[50];
+    char nome[40];
     char sexoAluno[2];
-    int cpfAluno;
+    char cpfAluno[15];
+    datanasc dataAluno;
     int matriculaAluno;
-};
+    
+} cadAlunos;
 
-struct professor
+typedef struct professor
 {
     char nomeProf[31];
     char sexoProf;
     int nascProf;
     int cpfProf;
     int matriculaProf;
-};
+} cadProf;
 
-struct materia
+typedef struct materia
 {
     char nomeMat[31];
     char profMat[31];
     int codigoMat;
     int semestreMat;
-};
+} cadMat;
 
 int main(void)
 {
-    struct alunos cadastro;
-    struct data cadDat;
+    cadAlunos listAlunos[10];
+    int numAlunos = 0;
     int opcao;
     int sair = 0;
 
+    printf("- PROJETO ESCOLA -\n-------------------");
+
     while (!sair)
     {
-        printf("digite a opcao:\n");
-        printf("0 - sair\n");
-        printf("1 - inserir aluno\n");
+        printf("\nDigite uma Opção:\n\n");
+        printf("0 - Sair.\n");
+        printf("1 - Inserir Aluno.\n");
         scanf("%d", &opcao);
 
         switch (opcao)
@@ -58,20 +62,32 @@ int main(void)
 
             case 1:
             {
-                printf("Digite a matricula do aluno: ");
-                scanf("%d", &cadastro.matriculaAluno);
+                printf("Digite a Matrícula do aluno: ");
+                scanf("%d", &listAlunos[numAlunos].matriculaAluno);
+                getchar();
+              
                 printf("Digite o nome do aluno: ");
-                fgets(cadastro.nome, 50, stdin);
-                size_t ln = strlen(cadastro.nome) - 1; 
-                if (cadastro.nome[ln] == '\n')
-                    cadastro.nome[ln] = '\0';
+                fgets(listAlunos[numAlunos].nome, 40, stdin);
+                size_t ln = strlen(listAlunos[numAlunos].nome) - 1; 
+                if (listAlunos[numAlunos].nome[ln] == '\n')
+                    listAlunos[numAlunos].nome[ln] = '\0';
 
                 printf("Digite o sexo do aluno: ");
-                fgets(cadastro.sexoAluno, 2, stdin);
-                printf("Digite a data de nascimento (dd/mm/aa): ");
-                scanf("%d/%d/%d", &cadDat.dia, &cadDat.mes, &cadDat.ano);
+                fgets(listAlunos[numAlunos].sexoAluno, 2, stdin);
+                if (listAlunos[numAlunos].sexoAluno[ln] == '\n')
+                    listAlunos[numAlunos].sexoAluno[ln] = '\0';
+              
+                printf("Digite a data de nascimento (dd/mm/aaaa): ");
+                scanf("%d/%d/%d", &listAlunos[numAlunos].dataAluno.dia, &listAlunos[numAlunos].dataAluno.mes, &listAlunos[numAlunos].dataAluno.ano);
+                getchar();
+              
                 printf("Digite o CPF: ");
-                scanf("%d", &cadastro.cpfAluno);
+                fgets(listAlunos[numAlunos].cpfAluno, 15, stdin);
+                if (listAlunos[numAlunos].cpfAluno[ln] == '\n')
+                    listAlunos[numAlunos].cpfAluno[ln] = '\0';
+
+                numAlunos++;
+              
                 break;
             }
         }
