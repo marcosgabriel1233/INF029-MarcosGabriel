@@ -1,73 +1,127 @@
 #include <stdio.h>
 #include <string.h>
-#include <locale.h>
+#define n 5
+#define completado 1
 
-struct data
+typedef struct data
 {
     int dia;
     int mes;
     int ano;
-};
+} datanasc;
 
-struct Aluno
+typedef struct alunos
 {
-    int matricula;
-    char nome[50];
-    char sexo;
-    int cpf;
-};
+    char nome[40];
+    char sexoAluno[2];
+    char cpfAluno[15];
+    datanasc dataAluno;
+    int matriculaAluno;
+
+} cadAlunos;
+
+int menuprincipal();
+int cadastroaluno(cadAlunos listAlunos[], int numAlunos);
+void listaraluno(cadAlunos listAlunos[], int numAlunos);
 
 int main(void)
 {
-    setlocale(LC_ALL, "portuguese");
-
-    struct Aluno cadastro;
-    struct data cadData;
-    int opcao;
+    cadAlunos listAlunos[n];
+    int numAlunos = 0;
+    int opcao, retorno;
     int sair = 0;
+
+    printf("- PROJETO ESCOLA -\n-------------------");
 
     while (!sair)
     {
-
-        printf("Digite a opção:\n");
-        printf("0 - Sair\n");
-        printf("1 - Inserir Aluno\n");
-        scanf("%d", &opcao);
+        opcao = menuprincipal();
 
         switch (opcao)
         {
         case 0:
         {
-            printf("Finalizando Escola\n");
+            printf("SAINDO...\n");
             sair = 1;
             break;
         }
+
         case 1:
         {
-            printf("Digite a matrícula: ");
-            scanf("%d", &cadastro.matricula);
-            getchar();
+            retorno = cadastroaluno(listAlunos, numAlunos);
+            if (retorno == completado)
+            {
+                printf("Cadastro realizado com sucesso\n");
 
-            printf("Digite o nome: ");
-            fgets(cadastro.nome, 50, stdin);
-            size_t ln = strlen(cadastro.nome) - 1;
-            if (cadastro.nome[ln] == '\n')
-                cadastro.nome[ln] = '\0';
+                numAlunos++;
 
-            printf("Digite o sexo: ");
-            scanf("%c", &cadastro.sexo);
-
-            printf("Digite a data de nascimento (dd/mm/aa): ");
-            scanf("%d/%d/%d", &cadData.dia, &cadData.mes, &cadData.ano);
-            getchar();
-
-            printf("Digite o CPF: ");
-            scanf("%d", &cadastro.cpf);
-            printf("\n");
-
+                break;
+            }
+        }
+        case 2:
+        {
+            listaraluno(listAlunos, numAlunos);
+            break;
+        }
+        default:
+        {
+            printf("Opção Inválida. Tente novamente.");
             break;
         }
         }
     }
-    return 1;
+}
+
+int menuprincipal()
+{
+    int opcao;
+    printf("\nDigite uma Opção:\n\n");
+    printf("0 - Sair.\n");
+    printf("1 - Inserir Aluno.\n");
+    printf("2 - Listar Alunos.\n");
+    scanf("%d", &opcao);
+
+    return opcao;
+}
+
+int cadastroaluno(cadAlunos listAlunos[], int numAlunos)
+{
+    printf("Digite a Matrícula do aluno: ");
+    scanf("%d", &listAlunos[numAlunos].matriculaAluno);
+    getchar();
+
+    printf("Digite o nome do aluno: ");
+    fgets(listAlunos[numAlunos].nome, 40, stdin);
+    size_t ln = strlen(listAlunos[numAlunos].nome) - 1;
+    if (listAlunos[numAlunos].nome[ln] == '\n')
+        listAlunos[numAlunos].nome[ln] = '\0';
+
+    printf("Digite o sexo do aluno: ");
+    fgets(listAlunos[numAlunos].sexoAluno, 2, stdin);
+    if (listAlunos[numAlunos].sexoAluno[ln] == '\n')
+        listAlunos[numAlunos].sexoAluno[ln] = '\0';
+
+    printf("Digite a data de nascimento (dd/mm/aaaa): ");
+    scanf("%d/%d/%d", &listAlunos[numAlunos].dataAluno.dia, &listAlunos[numAlunos].dataAluno.mes, &listAlunos[numAlunos].dataAluno.ano);
+    getchar();
+
+    printf("Digite o CPF: ");
+    fgets(listAlunos[numAlunos].cpfAluno, 15, stdin);
+    ln = strlen(listAlunos[numAlunos].cpfAluno) - 1;
+    if (listAlunos[numAlunos].cpfAluno[ln] == '\n')
+        listAlunos[numAlunos].cpfAluno[ln] = '\0';
+
+    return completado;
+}
+
+void listaraluno(cadAlunos listAlunos[], int numAlunos)
+{
+    for (int i = 0; i < numAlunos; i++)
+    {
+        printf("-----\n");
+        printf("Nome: %s\n", listAlunos[i].nome);
+        printf("Matricula: %d\n", listAlunos[i].matriculaAluno);
+        printf("CPF: %s\n", listAlunos[i].cpfAluno);
+        printf("Sexo: %s\n", listAlunos[i].sexoAluno);
+    }
 }
