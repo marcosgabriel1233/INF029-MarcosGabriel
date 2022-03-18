@@ -1,7 +1,6 @@
-/* 637
-! Validar Datas.
+/* 720
+! Incluir Alunos nas Disciplinas.
 ! Relatórios.
-! Testar as funções de excluir.
 ! Etc.
 */
 
@@ -121,6 +120,7 @@ int main(void)
               }
               case 4:{
                 excluiraluno(listAlunos, numAlunos);
+                numAlunos--;
                 break;
               }
               default:{
@@ -155,6 +155,7 @@ int main(void)
               }
               case 4:{
                 excluirprof(listProf, numProf);
+                numProf--;
                 break;
               }
               default:{
@@ -189,6 +190,7 @@ int main(void)
               }
               case 4:{
                 excluirdis(listDis, numDis);
+                numDis--;
                 break;
               }
               default:{
@@ -252,12 +254,45 @@ int cadastroaluno(cadAlunos listAlunos[], int numAlunos)
     if (listAlunos[numAlunos].sexoAluno[ln] == '\n')
         listAlunos[numAlunos].sexoAluno[ln] = '\0';
 
-    printf("Digite a data de nascimento (DD.MM.AAAA):\nDia: ");
-    scanf("%d", &listAlunos[numAlunos].dataAluno.dia);
+    printf("Digite a data de nascimento:\n");
+    printf("Ano: ");
+    scanf("%d", &listAlunos[numAlunos].dataAluno.ano);
+  
+    while(listAlunos[numAlunos].dataAluno.ano<1910){
+      printf("Inválido.\nAno: ");
+      scanf("%d", &listAlunos[numAlunos].dataAluno.ano);
+      }
+
     printf("Mês: ");
     scanf("%d",&listAlunos[numAlunos].dataAluno.mes);
-    printf("Ano: ");
-    scanf("%d",&listAlunos[numAlunos].dataAluno.ano);
+    while(listAlunos[numAlunos].dataAluno.mes>12){
+      printf("Inválido.\nMês: ");
+      scanf("%d",&listAlunos[numAlunos].dataAluno.mes);
+      } 
+
+    printf("Dia: ");
+    scanf("%d",&listAlunos[numAlunos].dataAluno.dia);
+
+    if(listAlunos[numAlunos].dataAluno.mes==4||6||9||11)
+    {
+      while(listAlunos[numAlunos].dataAluno.dia>30){
+        printf("Inválido.\nDia: ");
+        scanf("%d",&listAlunos[numAlunos].dataAluno.dia);
+        } 
+    }
+    if(listAlunos[numAlunos].dataAluno.mes==1||3||5||7||8||10||12)
+    {
+      while(listAlunos[numAlunos].dataAluno.dia>31){
+        printf("Inválido.\nDia: ");
+        scanf("%d",&listAlunos[numAlunos].dataAluno.dia);
+      }
+    }
+    else{
+      while(listAlunos[numAlunos].dataAluno.dia>29){
+        printf("Inválido.\nDia: ");
+        scanf("%d",&listAlunos[numAlunos].dataAluno.dia);
+      }
+    }
     getchar();
 
     printf("Digite o CPF: ");
@@ -276,7 +311,7 @@ void listaraluno(cadAlunos listAlunos[], int numAlunos)
     printf("\n*******************");
     for (int i = 0; i < numAlunos; i++)
     {
-        printf("----------\n");
+        printf("\n----------\n");
         printf("Nome: %s (%d)\n", listAlunos[i].nome, i);
         printf("Matricula: %d\n", listAlunos[i].matriculaAluno);
         printf("CPF: %s\n", listAlunos[i].cpfAluno);
@@ -284,15 +319,18 @@ void listaraluno(cadAlunos listAlunos[], int numAlunos)
         printf("Data: %d-%d-%d \n", listAlunos[i].dataAluno.dia,listAlunos[i].dataAluno.mes,listAlunos[i].dataAluno.ano);
     }
     printf("\n*******************");
+
+  __fpurge(stdin);
 }
 
 int atualizaraluno(cadAlunos listAlunos[], int numAlunos)
 {
   int nda;
+  int ndam=numAlunos-1;
 
   printf("\nInforme o número do aluno: ");
   scanf("%d",&nda);
-  while(nda>numAlunos){
+  while(nda>ndam){
     printf("(Digite -1 para sair)\nNúmero inválido! Tente outro: ");
     scanf("%d",&nda);
   }
@@ -339,10 +377,15 @@ int atualizaraluno(cadAlunos listAlunos[], int numAlunos)
 int excluiraluno(cadAlunos listAlunos[], int numAlunos)
 {
   int eda;
-  int eda2=eda+1;
+  int ndam=numAlunos-1;
+  cadAlunos *ptr1, *ptr2, *ptr3;
+  ptr1 = &listAlunos[eda];
+  ptr2 = &listAlunos[eda+1];
+  ptr3 = &listAlunos[numAlunos-1];
+  
   printf("\nInforme o número do aluno: ");
   scanf("%d",&eda);
-  while(eda>numAlunos){
+  while(eda>ndam){
     printf("(Digite -1 para sair)\nNúmero inválido! Tente outro: ");
     scanf("%d",&eda);
   }
@@ -352,12 +395,11 @@ int excluiraluno(cadAlunos listAlunos[], int numAlunos)
   }
   else{
     for(eda;eda<numAlunos;eda++){
-      listAlunos[eda]=listAlunos[eda2];
-      eda2++;
+      ptr1 = ptr2;
+      ptr3 = NULL;
     }
 
     __fpurge(stdin);
-    numAlunos--;
     printf("\nDados excluídos com sucesso. Numeração atualizada.");
     return completado;
   }
@@ -397,12 +439,45 @@ int cadastroprof(cadProf listProf[], int numProf)
     if (listProf[numProf].sexoProf[ln] == '\n')
         listProf[numProf].sexoProf[ln] = '\0';
 
-    printf("Digite a data de nascimento (DD.MM.AAAA):\nDia: ");
-    scanf("%d", &listProf[numProf].dataProf.dia);
-    printf("Mês: ");
-    scanf("%d", &listProf[numProf].dataProf.mes);
+    printf("Digite a data de nascimento:\n");
     printf("Ano: ");
     scanf("%d", &listProf[numProf].dataProf.ano);
+  
+    while(listProf[numProf].dataProf.ano<1910){
+      printf("Inválido.\nAno: ");
+      scanf("%d", &listProf[numProf].dataProf.ano);
+      }
+
+    printf("Mês: ");
+    scanf("%d",&listProf[numProf].dataProf.mes);
+    while(listProf[numProf].dataProf.mes>12){
+      printf("Inválido.\nMês: ");
+      scanf("%d",&listProf[numProf].dataProf.mes);
+      } 
+
+    printf("Dia: ");
+    scanf("%d",&listProf[numProf].dataProf.dia);
+
+    if(listProf[numProf].dataProf.mes==4||6||9||11)
+    {
+      while(listProf[numProf].dataProf.dia>30){
+        printf("Inválido.\nDia: ");
+        scanf("%d",&listProf[numProf].dataProf.dia);
+        } 
+    }
+    if(listProf[numProf].dataProf.mes==1||3||5||7||8||10||12)
+    {
+      while(listProf[numProf].dataProf.dia>31){
+        printf("Inválido.\nDia: ");
+        scanf("%d",&listProf[numProf].dataProf.dia);
+      }
+    }
+    else{
+      while(listProf[numProf].dataProf.dia>29){
+        printf("Inválido.\nDia: ");
+        scanf("%d",&listProf[numProf].dataProf.dia);
+      }
+    }
     getchar();
 
     printf("Digite o CPF: ");
@@ -421,7 +496,7 @@ void listarprof(cadProf listProf[], int numProf)
     printf("\n*******************");
     for (int i = 0; i < numProf; i++)
     {
-        printf("----------\n");
+        printf("\n----------\n");
         printf("Nome: %s (%d)\n", listProf[i].nomeProf, i);
         printf("Matricula: %d\n", listProf[i].matriculaProf);
         printf("CPF: %s\n", listProf[i].cpfProf);
@@ -434,10 +509,10 @@ void listarprof(cadProf listProf[], int numProf)
 int atualizarprof(cadProf listProf[], int numProf)
 {
   int ndp;
-
+  int ndpm=numProf-1;
   printf("\nInforme o número do professor: ");
   scanf("%d",&ndp);
-  while(ndp>numProf){
+  while(ndp>ndpm){
     printf("(Digite -1 para sair)\nNúmero inválido! Tente outro: ");
     scanf("%d",&ndp);
   }
@@ -484,10 +559,15 @@ int atualizarprof(cadProf listProf[], int numProf)
 int excluirprof(cadProf listProf[], int numProf)
 {
   int edp;
-  int edp2=edp+1;
+  int ndpm=numProf-1;
+  cadProf *ptr1, *ptr2, *ptr3;
+  ptr1 = &listProf[edp];
+  ptr2 = &listProf[edp+1];
+  ptr3 = &listProf[edp-1];
+  
   printf("\nInforme o número do professor: ");
   scanf("%d",&edp);
-  while(edp>numProf){
+  while(edp>ndpm){
     printf("(Digite -1 para sair)\nNúmero inválido! Tente outro: ");
     scanf("%d",&edp);
   }
@@ -497,17 +577,15 @@ int excluirprof(cadProf listProf[], int numProf)
   }
   else{
     for(edp;edp<numProf;edp++){
-      listProf[edp]=listProf[edp2];
-      edp2++;
+      ptr1 = ptr2;
+      ptr3 = NULL;
     }
 
     __fpurge(stdin);
-    numProf--;
     printf("\nDados excluídos com sucesso. Numeração atualizada.");
     return completado;
   }
 }
-
 //-------F. DISCIPLINAS-------
 
 int menuDis()
@@ -570,10 +648,11 @@ void listardis(cadDis listDis[], int numDis)
 int atualizardis(cadDis listDis[], int numDis)
 {
   int ndd;
+  int nddm=numDis-1;
 
   printf("\nInforme o número da disciplina: ");
   scanf("%d",&ndd);
-  while(ndd>numDis){
+  while(ndd>nddm){
     printf("(Digite -1 para sair)\nNúmero inválido! Tente outro: ");
     scanf("%d",&ndd);
   }
@@ -612,10 +691,15 @@ int atualizardis(cadDis listDis[], int numDis)
 int excluirdis(cadDis listDis[], int numDis)
 {
   int edd;
-  int edd2=edd+1;
+  int nddm=numDis-1;
+  cadDis *ptr1, *ptr2, *ptr3;
+  ptr1 = &listDis[edd];
+  ptr2 = &listDis[edd+1];
+  ptr3 = &listDis[edd-1];
+  
   printf("\nInforme o número da disciplina: ");
   scanf("%d",&edd);
-  while(edd>numDis){
+  while(edd>nddm){
     printf("(Digite -1 para sair)\nNúmero inválido! Tente outro: ");
     scanf("%d",&edd);
   }
@@ -625,12 +709,11 @@ int excluirdis(cadDis listDis[], int numDis)
   }
   else{
     for(edd;edd<numDis;edd++){
-      listDis[edd]=listDis[edd2];
-      edd2++;
+      ptr1 = ptr2;
+      ptr3 = NULL;
     }
 
     __fpurge(stdin);
-    numDis--;
     printf("\nDados excluídos com sucesso. Numeração atualizada.");
     return completado;
   }
