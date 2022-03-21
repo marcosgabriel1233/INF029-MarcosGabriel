@@ -71,6 +71,7 @@ int atualizardis(cadDis listDis[], int numDis);
 int excluirdis(cadDis listDis[], int numDis);
 
 void sexoalunos(cadAlunos listAlunos[], int numAlunos);
+void ordemalfabetica (cadAlunos listAlunos[], int numAlunos);
 
 cadAlunos listAlunos[n];
 cadProf listProf[n];
@@ -217,6 +218,9 @@ int main(void)
               case 1:{
                 sexoalunos(listAlunos, numAlunos);
                 break;
+              }
+              case 2:{
+                ordemalfabetica(listAlunos, numAlunos);
               }
             }
           }//Relatórios.
@@ -841,7 +845,7 @@ int menuRel()
     printf("\n-------------------\n...RELATÓRIOS...\nDigite uma Opção:\n\n");
     printf("0 - Voltar.\n");
     printf("1 - Listar Alunos por Sexo.\n");
-    printf("2 - .\n");
+    printf("2 - Listar Alunos em Ordem Alfabetica\n");
     printf("3 - .\n");
     printf("4 - .\n");
     printf("5 - .\n");
@@ -871,14 +875,23 @@ void sexoalunos (cadAlunos listAlunos[], int numAlunos)
   }
 }
 
-/*void ordemalfabetica (cadAlunos listAlunos[], int numAlunos)
+void ordemalfabetica (cadAlunos listAlunos[], int numAlunos)
 {
-  int i, teste;
+  int i, j, k;
+  char aux[50];
   printf("\nAlunos Cadastrados em Ordem Alfabética:\n");
   for(i=0;i<numAlunos;i++){
-    teste = strcmp(listAlunos[i].nome[0], "A");
-    if(teste == 0){
-      printf("\n%s",listAlunos[i].nome)
+    for(j = i+1; j < numAlunos; j++){
+      k = strcmp(listAlunos[i].nome, listAlunos[j].nome);
+      if(k > 0){
+        strcpy(aux, listAlunos[i].nome);
+        strcpy(listAlunos[i].nome, listAlunos[j].nome);
+        strcpy(listAlunos[j].nome, aux);
+      }
     }
   }
-}*/
+  printf("Nomes ordenados alfabeticamente: \n");
+  for(i = 0; i < numAlunos; i++){
+    printf("%s\n", listAlunos[i].nome);
+  }
+}
