@@ -11,7 +11,6 @@ int main()
     printf("Digite o segundo numero: ");
     scanf("%f", &b);
 
-
     float resultado = soma(a, b);
     
     printf("A soma eh: %.2f", resultado);
