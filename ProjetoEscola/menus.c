@@ -1,4 +1,9 @@
-#include "menu.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio_ext.h>
+
+#include "menus.h"
 
 int menuprincipal()
 {
@@ -55,6 +60,8 @@ int menuDis()
     printf("3 - Atualizar Disciplina.\n");
     printf("4 - Excluir Disciplina.\n");
     printf("5 - Incluir Aluno na Disciplina.\n");
+    printf("6 - Excluir Aluno da Disciplina.\n");
+    printf("7 - Listar Disciplina com Alunos.\n");
     printf("\n> ");
     scanf("%d", &opcaoDis);
     getchar();
@@ -72,9 +79,12 @@ int menuRel()
     printf("3 - Listar Alunos em Ordem Alfabetica.\n");
     printf("4 - Listar Professores em Ordem Alfabetica.\n");
     printf("5 - Aniversáriantes do Mês.\n");
+    printf("6 - Busca a partir de 3 letras.\n");
+    printf("7 - Disciplinas com Mais de 40 Vagas.\n");
+    printf("8 - Alunos Matriculados em Menos de 3 Disciplinas.\n");
     printf("\n> ");
     scanf("%d", &opcaoRel);
     getchar();
 
     return opcaoRel;
-}
+  }
