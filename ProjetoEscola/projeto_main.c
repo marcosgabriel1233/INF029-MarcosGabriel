@@ -1,5 +1,5 @@
 /* 
-gcc projeto_main.c disciplinas.c menus.c pessoas.c relatorios.h disciplinas.h menus.h pessoas.h relatorios.c structs.h -o exe
+gcc projeto_main.c disciplinas.c menus.c pessoas.c relatorios.h disciplinas.h menus.h pessoas.h relatorios.c structs.h extras.h extras.c -o exe
 
 ! Listar Alunos ordenados por data de nascimento.
 ! Listar Professores ordenados por data de nascimento.
@@ -15,6 +15,7 @@ gcc projeto_main.c disciplinas.c menus.c pessoas.c relatorios.h disciplinas.h me
 #include "pessoas.h"
 #include "disciplinas.h"
 #include "relatorios.h"
+#include "extras.h"
 
 #define n 50
 #define completado 1

@@ -5,6 +5,7 @@
 
 #include "structs.h"
 #include "disciplinas.h"
+#include "extras.h"
 
 #define n 50
 #define completado 1
@@ -67,26 +68,11 @@ void listardis(cadDis vet[], int num)
 
 void listarDCA(cadDis vet[], int num, aldis mat[][n], cadPessoas vet2[], int num2)
 {
-  int i, tam, teste, ndd = -1, ndp, conf = 0;
+  int i, tam, teste, ndd, ndp, conf = 0;
   char codigo[10];
 
-  while(conf == 0){
-  printf("\nInforme o código da disciplina: ");
-  fgets(codigo, 10, stdin);
-  size_t ln = strlen(codigo) - 1;
-  if (codigo[ln] == '\n')
-      codigo[ln] = '\0';
-
-  conf = 0;
-  for(i=0;i<num;i++){
-    teste = strcmp(vet[i].codDis, codigo);
-    ndd++;
-    if(teste == 0){
-      conf++;
-      i = num;
-    }
-  }
-    }
+  ndd = descdis(vet, num);
+  
         printf("----------\n");
         printf("Nome: %s\n", vet[ndd].nomeDis);
         printf("Código: %s\n", vet[ndd].codDis);
@@ -101,28 +87,12 @@ void listarDCA(cadDis vet[], int num, aldis mat[][n], cadPessoas vet2[], int num
 }
 
 int atualizardis(cadDis vet[], int num, cadPessoas vet2[], int num2)
-{
-  int i, ndd = -1, teste, conf = 0;
+{ 
+  int i, teste, ndd, conf = 0;
   int nddm=num-1;
   char codigo[10];
 
-  while(conf == 0){
-  printf("\nInforme o código da disciplina a ser atualizada: ");
-  fgets(codigo, 10, stdin);
-  size_t ln = strlen(codigo) - 1;
-  if (codigo[ln] == '\n')
-      codigo[ln] = '\0';
-    
-  conf = 0;
-  for(i=0;i<num;i++){
-    teste = strcmp(vet[i].codDis, codigo);
-    ndd++;
-    if(teste == 0){
-      conf++;
-      i = num;
-    }
-  }
-    }
+  ndd = descdis(vet, num);
   
     printf("Digite o semestre da disciplina: ");
     scanf("%d", &vet[ndd].semDis);
@@ -166,27 +136,11 @@ int atualizardis(cadDis vet[], int num, cadPessoas vet2[], int num2)
 int excluirdis(cadDis vet[], cadPessoas vet2[], aldis mat[][n], int num, int num2)
 { 
   
-  int i, ndd = -1, teste, conf = 0;
+  int i, ndd, teste, conf = 0;
   int nddm=num-1;
   char codigo[10];
 
-  while(conf == 0){
-  printf("\nInforme o código da disciplina a ser excluida: ");
-  fgets(codigo, 10, stdin);
-  size_t ln = strlen(codigo) - 1;
-  if (codigo[ln] == '\n')
-      codigo[ln] = '\0';
-
-  conf = 0;
-  for(i=0;i<num;i++){
-    teste = strcmp(vet[i].codDis, codigo);
-    ndd++;
-    if(teste == 0){
-      conf++;
-      i = num;
-    }
-  }
-    }
+  ndd = descdis(vet, num);
 
   //------------------
   int teste2, tam, j;
@@ -231,44 +185,15 @@ int excluirdis(cadDis vet[], cadPessoas vet2[], aldis mat[][n], int num, int num
 
 int incluiraluno (aldis mat[][n], cadDis vet[],  cadPessoas vet2[], int num, int num2)
 {
-  int i, val, ndm, ndp = -1, teste, conf = 0, ndd = -1;
+  int i, val, ndm, ndp, teste, conf = 0, ndd;
   char codigo[10];
   
-  while(conf == 0){
-  printf("\nInforme o código da disciplina: ");
-  fgets(codigo, 10, stdin);
-  size_t ln = strlen(codigo) - 1;
-  if (codigo[ln] == '\n')
-      codigo[ln] = '\0';
-
-  conf = 0;
-  for(i=0;i<num;i++){
-    teste = strcmp(vet[i].codDis, codigo);
-    ndd++;
-    if(teste == 0){
-      conf++;
-      i = num;
-    }
-  }
-    }
+  ndd = descdis(vet, num);
 
   printf("Incluir aluno em %s.\n",vet[ndd].nomeDis);
   conf = 0;
   
-  while(conf == 0){
-  printf("\nInforme a matrícula do aluno a ser incluído: ");
-  scanf("%d",&ndm);
-  getchar();
-
-  conf = 0;
-  for(i=0;i<num2;i++){
-    ndp++;
-    if(vet2[i].matricula == ndm){
-      conf++;
-      i = num2;
-    }
-  }
-    }
+  ndp = descpes(vet2, num2);
 
   val = mat[ndd][0].numA;
   strcpy(mat[ndd][val].nomeA, vet2[ndp].nome);
@@ -283,45 +208,16 @@ int incluiraluno (aldis mat[][n], cadDis vet[],  cadPessoas vet2[], int num, int
 
 int excluiraluno (aldis mat[][n], cadDis vet[],  cadPessoas vet2[], int num, int num2)
 {
-  int i, k, aux, val, ndm, ndp = -1, teste, conf = 0, ndd = -1;
+  int i, k, aux, val, ndm, ndp, teste, conf = 0, ndd;
   char codigo[10];
   
-  while(conf == 0){
-  printf("\nInforme o código da disciplina: ");
-  fgets(codigo, 10, stdin);
-  size_t ln = strlen(codigo) - 1;
-  if (codigo[ln] == '\n')
-      codigo[ln] = '\0';
-
-  conf = 0;
-  for(i=0;i<num;i++){
-    teste = strcmp(vet[i].codDis, codigo);
-    ndd++;
-    if(teste == 0){
-      conf++;
-      i = num;
-    }
-  }
-    }
+  ndd = descdis(vet, num);
 
   printf("Excluir aluno de %s.\n",vet[ndd].nomeDis);
   conf = 0;
   
-  while(conf == 0){
-  printf("\nInforme a matrícula do aluno a ser excluído: ");
-  scanf("%d",&ndm);
-  getchar();
-
-  conf = 0;
-  for(i=0;i<num2;i++){
-    ndp++;
-    if(vet2[i].matricula == ndm){
-      conf++;
-      i = num2;
-    }
-  }
-    }
-
+  ndp = descpes(vet2, num2);
+  
   val = mat[ndd][0].numA;
   for(k=1;k<val;k++){
     teste = strcmp(mat[ndd][k].nomeA, vet2[ndp].nome);

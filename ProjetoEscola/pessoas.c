@@ -5,6 +5,7 @@
 
 #include "structs.h"
 #include "pessoas.h"
+#include "extras.h"
 
 #define n 50
 #define completado 1
@@ -136,22 +137,9 @@ void listar(cadPessoas vet[], int num)
 
 int atualizar(cadPessoas vet[], int num)
 {
-  int i, ndm, teste = 1, ndp = -1, conf = 0;
+  int i, ndm, teste = 1, ndp, conf = 0;
 
-  while(conf == 0){
-  printf("\nInforme a matrícula da pessoa a ser atualizada: ");
-  scanf("%d",&ndm);
-  getchar();
-
-  conf = 0;
-  for(i=0;i<num;i++){
-    ndp++;
-    if(vet[i].matricula == ndm){
-      conf++;
-      i = num;
-    }
-  }
-    }
+  ndp = descpes(vet, num);
   
     printf("\nDigite a nova matrícula: ");
     scanf("%d", &vet[ndp].matricula);

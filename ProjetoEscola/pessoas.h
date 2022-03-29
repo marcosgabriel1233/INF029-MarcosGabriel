@@ -2,6 +2,7 @@
 #define PESSOAS_H_
 
 #include "structs.h"
+#include "extras.h"
 
 #define n 50
 #define completado 1
