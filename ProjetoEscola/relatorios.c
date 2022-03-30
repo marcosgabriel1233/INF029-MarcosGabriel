@@ -171,9 +171,9 @@ void nascimento(cadPessoas vet[], int num)
 
   for(i=0;i<num;i++){
     for(j=0;j<num;j++){
-      if(nascimento[i].data.dia == vet[j].data.dia){
+      if(nascimento[i].data.ano == vet[j].data.ano){
         if(nascimento[i].data.mes == vet[j].data.mes){
-          if(nascimento[i].data.ano == vet[j].data.ano){
+          if(nascimento[i].data.dia == vet[j].data.dia){
             printf("\n----------\n");
             printf("Nome: %s\n",vet[j].nome);
             printf("Data: %d-%d-%d\n",vet[j].data.dia,vet[j].data.mes,vet[j].data.ano);

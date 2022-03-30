@@ -1,4 +1,17 @@
-// gcc projeto_main.c disciplinas.c menus.c pessoas.c relatorios.h disciplinas.h menus.h pessoas.h relatorios.c structs.h extras.h extras.c -o exe
+/* 
+  PROJETO ESCOLA
+
+  * Disciplina: INF029 - Laboratório de Programação
+  * Alunos: Kayran Vieira Chaves
+            Marcos Gabriel Carvalho de Oliveira
+            Paulo Henrique dos Santos Encarnação
+  * Data de Criação: 05/03/2022
+  * Última Modificação: 30/03/2022
+
+*/
+
+//gcc projeto_escola.c disciplinas.c menus.c pessoas.c relatorios.h disciplinas.h menus.h pessoas.h relatorios.c structs.h extras.h extras.c -o exe
+
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -107,7 +120,11 @@ int main(void)
                 break;
               }
               case 3:{
-                atualizar(listProf, numProf);
+                retorno = atualizar(listProf, numProf);
+                  if (retorno == completado)
+                {
+                  printf("\nDados atualizados com sucesso.");
+                }
                 break;
               }
               case 4:{

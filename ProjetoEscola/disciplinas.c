@@ -152,9 +152,9 @@ int excluirdis(cadDis vet[], cadPessoas vet2[], aldis mat[][n], int num, int num
       teste2 = strcmp(mat[ndd][j].nomeA, vet2[i].nome);
        if(teste2 == 0){
          vet2[j].dismat--;
+      }
+    }
   }
-    }
-    }
   //------------------
   
   int nd = ndd;

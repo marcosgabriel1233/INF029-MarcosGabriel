@@ -137,7 +137,7 @@ void listar(cadPessoas vet[], int num)
 
 int atualizar(cadPessoas vet[], int num)
 {
-  int i, ndm, teste = 1, ndp, conf = 0;
+  int i, ndm, tam, teste = 1, tcpf, tescpf = 1, ndp, conf = 0;
 
   ndp = descpes(vet, num);
   
@@ -208,11 +208,25 @@ printf("Digite a data de nascimento:\n");
     }
     getchar();
   
-    printf("Digite o CPF: ");
-    fgets(vet[ndp].cpf, 15, stdin);
-    ln = strlen(vet[ndp].cpf) -1;
-    if (vet[ndp].cpf[ln] == '\n')
-        vet[ndp].cpf[ln] = '\0';
+    while(tescpf > 0){
+      while(tam != 11){
+      printf("Digite o CPF: ");
+      fgets(vet[ndp].cpf, 15, stdin);
+      ln = strlen(vet[ndp].cpf) - 1;
+      if (vet[ndp].cpf[ln] == '\n')
+          vet[ndp].cpf[ln] = '\0';
+        
+      tam = strlen(vet[ndp].cpf);
+        
+      tescpf = 0;
+      for(i=0;i<num;i++){
+        tcpf = strcmp(vet[ndp].cpf, vet[i].cpf);
+        if(tcpf == 0){
+          tescpf++;
+          }
+      }
+        }
+      }
 
     __fpurge(stdin);
     
@@ -221,22 +235,9 @@ printf("Digite a data de nascimento:\n");
 
 int excluir(cadPessoas vet[], int num)
 {
-  int i, ndp = -1, ndm, conf = 0;
+  int i, ndp, ndm, conf = 0;
 
-  while(conf == 0){
-  printf("\nInforme a matrícula da pessoa a ser excluida: ");
-  scanf("%d",&ndm);
-  getchar();
-
-  conf = 0;
-  for(i=0;i<num;i++){
-    ndp++;
-    if(vet[i].matricula == ndm){
-      conf++;
-      i = num;
-    }
-  }
-    }  
+  ndp = descpes(vet, num);
 
   for(ndp;ndp<num-1;ndp++){
     vet[ndp] = vet[ndp+1];
