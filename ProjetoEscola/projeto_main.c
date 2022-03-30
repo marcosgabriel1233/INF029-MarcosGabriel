@@ -1,9 +1,4 @@
-/* 
-gcc projeto_main.c disciplinas.c menus.c pessoas.c relatorios.h disciplinas.h menus.h pessoas.h relatorios.c structs.h extras.h extras.c -o exe
-
-! Listar Alunos ordenados por data de nascimento.
-! Listar Professores ordenados por data de nascimento.
-*/
+// gcc projeto_main.c disciplinas.c menus.c pessoas.c relatorios.h disciplinas.h menus.h pessoas.h relatorios.c structs.h extras.h extras.c -o exe
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -214,6 +209,14 @@ int main(void)
               }
               case 8:{
                 menos3mat(listAlunos, numAlunos);
+                break;
+              }
+              case 9:{
+                nascimento(listAlunos, numAlunos);
+                break;
+              }
+              case 10:{
+                nascimento(listProf, numProf);
                 break;
               }
               default:{
