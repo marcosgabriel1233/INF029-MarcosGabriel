@@ -23,9 +23,9 @@ int cadastro(cadPessoas vet[], int num)
       for(i=0;i<num;i++){
         if(vet[num].matricula == vet[i].matricula){
           tesmat++;
-          }
-      }
         }
+      }
+    }
 
     printf("Digite o nome completo: ");
     fgets(vet[num].nome, 40, stdin);
@@ -43,11 +43,11 @@ int cadastro(cadPessoas vet[], int num)
       teste = strcmp(vet[num].sexo,"M");
         if(teste != 0){
           teste = strcmp(vet[num].sexo,"F");
-      }
+        }
       if(teste != 0){
         printf("Sexo Inválido.\n");
       }
-      }
+    }
 
     printf("Digite a data de nascimento:\n");
     printf("Ano: ");
@@ -56,14 +56,14 @@ int cadastro(cadPessoas vet[], int num)
     while(vet[num].data.ano < 1910){
       printf("Inválido.\nAno: ");
       scanf("%d", &vet[num].data.ano);
-      }
+    }
 
     printf("Mês: ");
     scanf("%d",&vet[num].data.mes);
     while(vet[num].data.mes>12){
       printf("Inválido.\nMês: ");
       scanf("%d",&vet[num].data.mes);
-      } 
+    } 
 
     printf("Dia: ");
     scanf("%d",&vet[num].data.dia);
@@ -73,7 +73,7 @@ int cadastro(cadPessoas vet[], int num)
       while(vet[num].data.dia>30){
         printf("Inválido.\nDia: ");
         scanf("%d",&vet[num].data.dia);
-        } 
+      } 
     }
     if(vet[num].data.mes==1||3||5||7||8||10||12)
     {
@@ -105,10 +105,10 @@ int cadastro(cadPessoas vet[], int num)
         tcpf = strcmp(vet[num].cpf, vet[i].cpf);
         if(tcpf == 0){
           tescpf++;
-          }
-      }
         }
       }
+      }
+    }
 
       vet[num].dismat = 0;
 
@@ -165,7 +165,7 @@ int atualizar(cadPessoas vet[], int num)
       if(teste != 0){
         printf("Sexo Inválido.\n");
       }
-      }
+    }
 
 printf("Digite a data de nascimento:\n");
     printf("Ano: ");
@@ -174,14 +174,14 @@ printf("Digite a data de nascimento:\n");
     while(vet[ndp].data.ano < 1910){
       printf("Inválido.\nAno: ");
       scanf("%d", &vet[ndp].data.ano);
-      }
+    }
 
     printf("Mês: ");
     scanf("%d",&vet[ndp].data.mes);
     while(vet[ndp].data.mes>12){
       printf("Inválido.\nMês: ");
       scanf("%d",&vet[ndp].data.mes);
-      } 
+    } 
 
     printf("Dia: ");
     scanf("%d",&vet[ndp].data.dia);
@@ -191,7 +191,7 @@ printf("Digite a data de nascimento:\n");
       while(vet[ndp].data.dia>30){
         printf("Inválido.\nDia: ");
         scanf("%d",&vet[ndp].data.dia);
-        } 
+      } 
     }
     if(vet[ndp].data.mes==1||3||5||7||8||10||12)
     {
@@ -223,10 +223,10 @@ printf("Digite a data de nascimento:\n");
         tcpf = strcmp(vet[ndp].cpf, vet[i].cpf);
         if(tcpf == 0){
           tescpf++;
-          }
-      }
         }
       }
+      }
+    }
 
     __fpurge(stdin);
     

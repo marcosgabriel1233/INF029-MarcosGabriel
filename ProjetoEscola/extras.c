@@ -29,9 +29,9 @@ int descdis(cadDis vet[], int num)
     if(teste == 0){
       conf++;
       i = num;
+      }
     }
   }
-    }
 
   return ndd;
 }
@@ -52,9 +52,8 @@ int descpes(cadPessoas vet[], int num)
     if(vet[i].matricula == ndm){
       conf++;
       i = num;
+      }
     }
   }
-    }
-
   return ndp;
 }
