@@ -20,8 +20,8 @@
 // Última atualização: 07/05/2021
 
 // #################################################
-#ifndef MarcosGabriel-20212160050-T1
-#define MarcosGabriel-20212160050-T1
+#ifndef MarcosGabriel20212160050T1
+#define MarcosGabriel20212160050T1
 
 typedef struct DQ
 {
@@ -51,4 +51,4 @@ int q5(int num);
 int q6(int numerobase, int numerobusca);
 DataQuebrada quebraData(char data[]);
 
-#endif  // MarcosGabriel-20212160050-T1
+#endif  // MarcosGabriel20212160050T1

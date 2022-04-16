@@ -18,24 +18,24 @@
 #include <string.h>
 
 //renomeie o arquivo do include abaixo para PrimeiroUltimoNomeMATRICULA.h
-#include "MarcosGabriel-20212160050-T1.h"
+#include "MarcosGabriel20212160050T1.h"
 
 void testSomar();    //função utilizada para testes
-void testFatorial(); //função utilizada para testes
+/*void testFatorial(); //função utilizada para testes
 void testQ1();
 void testQ2();
 void testQ3();
 void testQ4();
 void testQ5();
-void testQ6();
+void testQ6();*/
 
 int main()
 {
-    //testSomar();
-    //testFatorial();
-    //testQ1();
+    testSomar();
+    /*testFatorial();
+    testQ1();
     testQ2();
-    /*testQ3();
+    testQ3();
     testQ4();
     testQ5();
     testQ6();*/
@@ -43,7 +43,7 @@ int main()
 
 void testSomar()
 {
-    printf("%d\n", somar(3, 4) == 7);
+    printf("%d\n", somar(3, 4) == 9);
     printf("%d\n", somar(-1, -3) == -4);
     printf("%d\n", somar(-6, 6) == 0);
     printf("%d\n", somar(74, 9) == 83);
@@ -52,7 +52,7 @@ void testSomar()
 
 }
 
-void testFatorial()
+/*void testFatorial()
 {
     printf("%d\n", fatorial(3) == 6);
     printf("%d\n", fatorial(1) == 1);
@@ -185,4 +185,4 @@ void testQ6()
     printf("%d\n", q6(34567368, 4576) == 0);
     printf("%d\n", q6(3539343, 3) == 4);
     printf("%d\n", q6(3539343, 39) == 1);
-}
+}*/
