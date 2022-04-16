@@ -111,8 +111,7 @@ void busca(cadPessoas vet[], cadPessoas vet2[], int num, int num2)
     if(ponteiro){
       printf("- %s\n",vet2[i].nome);
     }
-  }
-  
+  }  
 }
 
 void menos3mat(cadPessoas vet[], int num)
